@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - branch_tutorial2
 
 jobs:
   Deployment:

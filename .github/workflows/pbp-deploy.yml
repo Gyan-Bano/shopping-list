@@ -3,8 +3,6 @@ name: Deploy
 on:
   push:
     branches:
-      - main
-      - master
       - branch_tutorial2
 
 jobs:

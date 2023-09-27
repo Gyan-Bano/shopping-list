@@ -1,6 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar scroll</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Link
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Link</a>
+                    </li>
+                </ul>
+                <div class="d-flex flex-row align-items-center"> <!-- Create a container for both elements -->
+                        <p class='my-auto'>Hello, {{ name }}</p> <!-- Add mr-2 class for margin -->
+                    <a href="{% url 'main:logout' %}">
+                        <button class="btn btn-outline-success px-2"> <!-- Add px-2 class for horizontal padding -->
+                            Logout
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
     <h1>Shopping List Page</h1>
 
     <h5>Name:</h5>
@@ -15,6 +57,7 @@
             <th>Price</th>
             <th>Description</th>
             <th>Date Added</th>
+            
         </tr>
     
         {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
@@ -25,6 +68,19 @@
                 <td>{{product.price}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.date_added}}</td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                    <a href="{% url 'main:delete_product' product.pk %}">
+                        <button>
+                            Delete
+                        </button>
+                    </a>
+
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -39,10 +95,10 @@
     </a>
 
 
-    <a href="{% url 'main:logout' %}">
+    {% comment %} <a href="{% url 'main:logout' %}">
         <button>
             Logout
         </button>
     </a>
-    
+     {% endcomment %}
 {% endblock content %}
